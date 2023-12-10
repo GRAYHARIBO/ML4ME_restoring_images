@@ -43,3 +43,12 @@ $ python convert_with_F.py 25 2280,1830,2820,2450 sift 0.6
 - bd_yolo : 타겟 이미지에서의 boundary box, x1,y1,x2,y2   ex) 300,400,240,560
 - method : feature extraction 방법 'sift', 'orb', 'kaze', 'akaze' 사용 가능   ex) sift
 - reduce : 사진 화질을 몇배로 줄일건지 	ex) 0.3
+
+
+---
+## 실제 Result
+![sift_F_result1](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/594e8ee7-ccdb-4c86-b498-b40bc5c93bd3)
+
+![sift_F_result7](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d3d1b1c3-525f-4a86-83f6-5d804b2123ff)
+
+![sift_F_result21](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/16953032-7da9-4d98-97c8-93546aad3b59)
