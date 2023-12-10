@@ -64,6 +64,8 @@ $ python convert_with_F.py 25 2280,1830,2820,2450 sift 0.6
 
 ---
 ## 실제 Result
+![sift_F_result25](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/2f3e0c7d-d561-4bbb-80c3-b3cedcae6aa9)
+
 ![sift_F_result1](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/594e8ee7-ccdb-4c86-b498-b40bc5c93bd3)
 
 ![sift_F_result7](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d3d1b1c3-525f-4a86-83f6-5d804b2123ff)
