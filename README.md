@@ -1,4 +1,4 @@
-# ML4ME_restoring_images
+# ML4ME_restoring_images (with F matrix)
 
 <div align="center">
 <img width="540" alt="ml4me" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/e1ff728e-5105-4097-843c-fca9d0295c28">
@@ -9,10 +9,27 @@
 
 # Team 기머링
 > **서울대학교 ML4ME 수업 기말 프로젝트** <br/> **개발기간: 2023.11 ~ 2023.12**
+<img width="859" alt="스크린샷 2023-12-10 213731" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d38258e0-4dfc-4aee-acb8-71b0d9fd5004">
 
 ## 프로젝트 소개
 
-다른 POV를 가진 사진 한 장으로 Target 이미지에서 원하지 않는 object를 제거하고 뒷 배경을 복원한다
+### 다른 POV를 가진 사진 한 장으로 Target 이미지에서 원하지 않는 object를 제거하고 뒷 배경을 복원한다
+
+이를 위해 우선 feature extraction을 진행한다
+<img width="874" alt="스크린샷 2023-12-10 213617" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/deeba06e-6b5e-44c2-89c6-498fc0dfcd11">
+<img width="828" alt="스크린샷 2023-12-10 213627" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/9ffd1934-a3ab-41b0-b28c-9166b86d2865">
+'sift', 'orb', 'kaze', 'akaze' 총 4가지 방식을 사용하였다.
+
+이를 통해 구한 interest points들로 Fundamental Matrix, F를 구한다.
+<img width="803" alt="스크린샷 2023-12-10 213653" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/7540841a-b222-417d-9627-d27adb93779b">
+
+이후 reference 이미지 pixel들에 대해 아래의 연산을 각각 해준다.
+1) pixel 주위(default=200 pix)에 있는 interest points를 찾는다
+2) 이에 대해 linear assumption을 진행해준다. (SVD 사용)
+3) Fundamental Matrix를 사용해 epipolar line을 그려주고 assumption 된 점을 line 위에 사영시킨다.
+<img width="669" alt="스크린샷 2023-12-10 213710" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/ff6cd668-e5bc-4d11-8d89-fc8546e6a734">
+
+위와 같이 구한 pixel들을 target 이미지에 덧입힌다. 
 
 ## 시작 가이드
 ### Requirements
