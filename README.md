@@ -64,10 +64,11 @@ $ python convert_with_F.py 25 2280,1830,2820,2450 sift 0.6
 
 ---
 ## 실제 Result
-![sift_F_result25](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/2f3e0c7d-d561-4bbb-80c3-b3cedcae6aa9)
+![슬라이드3](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/37b0bc93-d1c1-465f-9b82-f8a8dc79622b)
+![슬라이드2](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/aa139c3a-d2fb-4d60-9669-dd6fe5eb6174)
+![슬라이드1](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/7a8f993a-73cd-46db-b994-53226abed4c6)
+![슬라이드8](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/b9f21943-f5db-4a5b-bb08-d3d22bd28b1d)
+![슬라이드5](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/e1a162ed-a507-4751-8d99-6ca5a27cd918)
+![슬라이드6](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/2e8d1a45-3bbe-4171-8e8a-07981dad2c1b)
+![슬라이드7](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d8e46ae9-bffc-4b55-b84c-9624d9a33054)
 
-![sift_F_result1](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/594e8ee7-ccdb-4c86-b498-b40bc5c93bd3)
-
-![sift_F_result7](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d3d1b1c3-525f-4a86-83f6-5d804b2123ff)
-
-![sift_F_result21](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/16953032-7da9-4d98-97c8-93546aad3b59)
