@@ -1,4 +1,5 @@
 # ML4ME_restoring_images (with F matrix)
+---
 
 <div align="center">
 <img width="540" alt="ml4me" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/e1ff728e-5105-4097-843c-fca9d0295c28">
@@ -11,9 +12,11 @@
 > **서울대학교 ML4ME 수업 기말 프로젝트** <br/> **개발기간: 2023.11 ~ 2023.12**
 <img width="859" alt="스크린샷 2023-12-10 213731" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d38258e0-4dfc-4aee-acb8-71b0d9fd5004">
 
+---
 ## 프로젝트 소개
 
 ### 다른 POV를 가진 사진 한 장으로 Target 이미지에서 원하지 않는 object를 제거하고 뒷 배경을 복원한다
+
 
 이를 위해 우선 feature extraction을 진행한다
 <img width="874" alt="스크린샷 2023-12-10 213617" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/deeba06e-6b5e-44c2-89c6-498fc0dfcd11">
@@ -31,6 +34,7 @@
 
 위와 같이 구한 pixel들을 target 이미지에 덧입힌다. 
 
+---
 ## 시작 가이드
 ### Requirements
 For building and running the application you need:
