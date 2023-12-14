@@ -67,34 +67,37 @@ Reference Image: Image taken in a different POV so that the backgroud obscurred 
 <details>
 <summary>Requirements</summary>
 <div>
-
 For building and running the application you need:
 
 - [opencv-python 4.8.1.78](https://docs.opencv.org/4.x/)
 - [scikit-image 0.22.0](https://scikit-image.org/)
-
 </div>
 </details>
-
 
 
 <details>
 <summary>Installation</summary>
 <div>
-
 ``` bash
 $ git@github.com:GRAYHARIBO/ML4ME_restoring_images.git
 ```
-
 </div>
 </details>
 
-### Data preparation
+
+<details>
+<summary>Data preparation</summary>
+<div>
 /ML4ME_dataset/set"폴더번호" 폴더 생성 ex)/ML4ME_dataset/set36
 복원하고 싶은 이미지는 target.jpg
 배경으로 참고할 이미지는 ref1.jpg으로 이름 변경해 /set"폴더번호" 폴더 내 저장
+</div>
+</details>
 
-### In Terminal
+
+<details>
+<summary>In Terminal</summary>
+<div>
 - parser argument example
 ``` bash
 $ python convert_with_F.py n bd_yolo method reduce
@@ -105,7 +108,8 @@ n : Folder number ex) 3
 bd_yolo : Boundary box in target image : x1,y1,x2,y2 ex) 300,400,240,560
 method : Feature extraction method ex) sift
 scale : Image resize scale for calculation ex) 0.3
-
+</div>
+</details>
 
 ---
 ## Result
@@ -118,7 +122,11 @@ scale : Image resize scale for calculation ex) 0.3
 ![슬라이드7](https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d8e46ae9-bffc-4b55-b84c-9624d9a33054)
 
 ---
-# Team 기머링
-> **서울대학교 ML4ME 수업 기말 프로젝트** <br/> **개발기간: 2023.11 ~ 2023.12**
+## About our team
+### Team 기머링
+> **SNU ML4ME final project** <br/> **Development period: 2023.11 ~ 2023.12**
 <img width="859" alt="스크린샷 2023-12-10 213731" src="https://github.com/GRAYHARIBO/ML4ME_restoring_images/assets/96507797/d38258e0-4dfc-4aee-acb8-71b0d9fd5004">
+
+Please don't hesitate to reach out to us via the email provided below.   
+josephjung24@snu.ac.kr
 
