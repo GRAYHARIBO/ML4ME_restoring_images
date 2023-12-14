@@ -96,12 +96,17 @@ $ git@github.com:GRAYHARIBO/ML4ME_restoring_images.git
 <div>
 
 ```bash
+├── README.md
 ├── convert_with_F.py
-├── ML4ME_dataset : convert 할 images 저장
-│   ├── results : 결과물 저장되는 폴
-│   ├── set1
-│   │   ├── ref1.jpg : 배경 복원을 위한 reference 이미지, 이름 형식 지킬 것
-│   │   └── target.jpg : 배경 복원할 target 이미지, 이름 형식 지킬 것
+├── set : convert 할 images 위치
+│   └── set1
+│       ├── ref1.jpg : 배경 복원을 위한 reference 이미지, 이름 형식 지킬 것
+│       └── target.jpg : 배경 복원할 target 이미지, 이름 형식 지킬 것
+└── runs : 결과 파일 저장되는 디렉토리
+    ├── F_results : F matrix로 변환된 이미지
+    │   └── sift_F_result4.jpg
+    └── predict-seg : H matrix와 YOLO로 변환된 이미지
+        └── constructed_image.jpg
 
 ```
 
