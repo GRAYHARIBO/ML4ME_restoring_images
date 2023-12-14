@@ -119,6 +119,8 @@ You need to make new "set" folder to run with your images.
 <details>
 <summary>In Terminal</summary>
 <div>
+  
+## F matrix
 - parser argument example
   
 ``` bash
@@ -130,6 +132,18 @@ n : Folder number ex) 3
 bd_yolo : Boundary box in target image : x1,y1,x2,y2 ex) 300,400,240,560   
 method : Feature extraction method ex) sift   
 scale : Image resize scale for calculation ex) 0.3   
+
+## H matrix + YOLO
+- parser argument example
+  
+``` bash
+$ python3 segment/predict.py --weights yolov7-seg.pt --source "set/set1/target.jpg"
+$ python3 segment/predict.py --weights yolov7-seg.pt --source "set/set1/target.jpg"
+```
+
+same argparse as YOLOv7
+--source "set/set1/"+(your file name)
+
 </div>
 </details>
 
