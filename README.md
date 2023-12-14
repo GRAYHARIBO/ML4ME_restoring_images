@@ -60,28 +60,34 @@ A5.
 Target Image: Image taken with the obstacle
 Ground Truth: Image taken in the same POV as Target Image, but without the obstacle
 Reference Image: Image taken in a different POV so that the backgroud obscurred by the obstacle in Target Image is visible
+
 ---
 ## How to Run our code
 
 <details>
-<summary>제목</summary>
+<summary>Requirements</summary>
 <div>
 
-내용
-
-</div>
-</details>
-
-### Requirements
 For building and running the application you need:
 
 - [opencv-python 4.8.1.78](https://docs.opencv.org/4.x/)
 - [scikit-image 0.22.0](https://scikit-image.org/)
 
-### Installation
+</div>
+</details>
+
+
+
+<details>
+<summary>Installation</summary>
+<div>
+
 ``` bash
 $ git@github.com:GRAYHARIBO/ML4ME_restoring_images.git
 ```
+
+</div>
+</details>
 
 ### Data preparation
 /ML4ME_dataset/set"폴더번호" 폴더 생성 ex)/ML4ME_dataset/set36
