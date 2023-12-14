@@ -11,8 +11,16 @@ import torch.backends.cudnn as cudnn
 import skimage
 from sort_count import *
 import numpy as np
-#...........................
+import matplotlib.pyplot as plt
+import matplotlib as mpl
 
+from tkinter import *
+from matplotlib.figure import Figure
+from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+
+import os
+os.environ['KMP_DUPLICATE_LIB_OK']='True'
+#...........................
 
 FILE = Path(__file__).resolve()
 ROOT = FILE.parents[1]  # YOLOv5 root directory
@@ -29,6 +37,15 @@ from utils.segment.general import process_mask, scale_masks, masks2segments
 from utils.segment.plots import plot_masks
 from utils.torch_utils import select_device, smart_inference_mode
 
+# TODO ================================================================================
+# 사전 정의된 함수 임포트
+from return_segment import segment_image, segment_video
+from return_picture import homography
+#from return_picture_F import get_proj_img, get_reconstructed_image
+#from return_picture_F2 import extract, matching, img_F_transform, get_reconstructed_image
+si = segment_image()
+sv = segment_video()
+# TODO END ============================================================================
 
 @smart_inference_mode()
 def run(
@@ -61,8 +78,13 @@ def run(
         trk = False,
 ):  
 
-    #.... Initialize SORT .... 
-        
+    # TODO ================================================================================
+    source_parent = os.path.join(str(source), os.pardir)
+    ref_image = cv2.imread(str(source_parent) + '/ref1.jpg')
+    target_image = cv2.imread(str(source))
+    # TODO ================================================================================
+
+    #.... Initialize SORT ....      
     sort_max_age = 5 
     sort_min_hits = 2
     sort_iou_thresh = 0.2
@@ -99,7 +121,7 @@ def run(
         dataset = LoadImages(source, img_size=imgsz, stride=stride, auto=pt)
         bs = 1  # batch_size
     vid_path, vid_writer = [None] * bs, [None] * bs
-
+    
     # Run inference
     model.warmup(imgsz=(1 if pt else bs, 3, *imgsz))  # warmup
     seen, windows, dt = 0, [], (Profile(), Profile(), Profile())
@@ -120,10 +142,10 @@ def run(
         # NMS
         with dt[2]:
             pred = non_max_suppression(pred, conf_thres, iou_thres, classes, agnostic_nms, max_det=max_det, nm=32)
-
+        
         # Second-stage classifier (optional)
         # pred = utils.general.apply_classifier(pred, classifier_model, im, im0s)
-
+        
         # Process predictions
         for i, det in enumerate(pred):  # per image
             seen += 1
@@ -132,7 +154,7 @@ def run(
                 s += f'{i}: '
             else:
                 p, im0, frame = path, im0s.copy(), getattr(dataset, 'frame', 0)
-
+            
             p = Path(p)  # to Path
             save_path = str(save_dir / p.name)  # im.jpg
             txt_path = str(save_dir / 'labels' / p.stem) + ('' if dataset.mode == 'image' else f'_{frame}')  # im.txt
@@ -155,12 +177,26 @@ def run(
                 for c in det[:, 5].unique():
                     n = (det[:, 5] == c).sum()  # detections per class
                     s += f"{n} {names[int(c)]}{'s' * (n > 1)}, "  # add to string
-
+                
                 # Mask plotting ----------------------------------------------------------------------------------------
                 mcolors = [colors(int(cls), True) for cls in det[:, 5]]
                 im_masks = plot_masks(im[i], masks, mcolors)  # image with masks shape(imh,imw,3)
                 annotator.im = scale_masks(im.shape[2:], im_masks, im0.shape)  # scale to original h, w
-                # Mask plotting ----------------------------------------------------------------------------------------
+                
+                # TODO ==========================================================================================
+                #si = segment_image() # segment_image 클래스 시작
+                MASK_INDEX, RESIZED_MASK, BBOX = si.extract_segmentation_array(im0, im, masks, save_dir, det[:,:4]) # 원본 마스크와 크기 증가된 마스크 출력
+                #img_new, _ , _ = get_proj_img(ref_image, target_image, BBOX, save_dir)
+                #kp1, des1, kp2, des2 = extract(ref_image, target_image, method = 'sift')
+                #pts1, pts2 = matching(kp1, kp2, des1, des2)
+                #F, mask = cv2.findFundamentalMat(pts1, pts2, cv2.FM_LMEDS)
+                #pts1 = pts1[mask.ravel()==1]
+                #pts2 = pts2[mask.ravel()==1]
+                #img_new = img_F_transform(ref_image, pts1, pts2, F, BBOX, l=200, u_all = 0)
+                #reconstructed_image = get_reconstructed_image(target_image, img_new, MASK_INDEX, save_dir)
+                #reconstructed_image = homography(target_image, ref_image, MASK_INDEX, save_dir)
+                reconstructed_image = homography(target_image, ref_image, RESIZED_MASK, save_dir, BBOX) # 호모그래피 이용해 빈 영역 채우기
+                # TODO END ======================================================================================
 
                 if trk:
                     #Tracking ----------------------------------------------------
@@ -173,6 +209,11 @@ def run(
                     tracked_dets = sort_tracker.update(dets_to_sort)
                     tracks =sort_tracker.getTrackers()
 
+                    # TODO ==========================================================================================
+                    #MASK_INDEX, RESIZED_MASK = sv.extract_segmentation_array_video(im0, im, masks, save_dir, det[:,:4], tracked_dets)
+                    #reconstructed_image = homography(im0, ref_image, RESIZED_MASK, save_dir, None)
+                    # TODO END ======================================================================================
+                    
                     for track in tracks:
                         annotator.draw_trk(line_thickness,track)
 
@@ -224,10 +265,11 @@ def run(
                             fps, w, h = 30, im0.shape[1], im0.shape[0]
                         save_path = str(Path(save_path).with_suffix('.mp4'))  # force *.mp4 suffix on results videos
                         vid_writer[i] = cv2.VideoWriter(save_path, cv2.VideoWriter_fourcc(*'mp4v'), fps, (w, h))
-                    vid_writer[i].write(im0)
-
+                    #vid_writer[i].write(im0)
+                    vid_writer[i].write(reconstructed_image)
         # Print time (inference-only)
         LOGGER.info(f"{s}{'' if len(det) else '(no detections), '}{dt[1].dt * 1E3:.1f}ms")
+
 
     # Print results
     t = tuple(x.t / seen * 1E3 for x in dt)  # speeds per image
@@ -237,7 +279,6 @@ def run(
         LOGGER.info(f"Results saved to {colorstr('bold', save_dir)}{s}")
     if update:
         strip_optimizer(weights[0])  # update model (to fix SourceChangeWarning)
-
 
 def parse_opt():
     parser = argparse.ArgumentParser()
@@ -273,11 +314,9 @@ def parse_opt():
     print_args(vars(opt))
     return opt
 
-
 def main(opt):
     check_requirements(exclude=('tensorboard', 'thop'))
     run(**vars(opt))
-
 
 if __name__ == "__main__":
     opt = parse_opt()
