@@ -121,10 +121,10 @@ $ python convert_with_F.py n bd_yolo method reduce
 $ python convert_with_F.py 3 300,400,240,560 sift 0.3
 ```
 
-n : Folder number ex) 3
-bd_yolo : Boundary box in target image : x1,y1,x2,y2 ex) 300,400,240,560
-method : Feature extraction method ex) sift
-scale : Image resize scale for calculation ex) 0.3
+n : Folder number ex) 3   
+bd_yolo : Boundary box in target image : x1,y1,x2,y2 ex) 300,400,240,560   
+method : Feature extraction method ex) sift   
+scale : Image resize scale for calculation ex) 0.3   
 </div>
 </details>
 
