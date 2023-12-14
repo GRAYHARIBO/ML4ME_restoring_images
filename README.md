@@ -141,7 +141,7 @@ $ python3 segment/predict.py --weights yolov7-seg.pt --source "set/set1/target.j
 $ python3 segment/predict.py --weights yolov7-seg.pt --source "set/set1/target.jpg"
 ```
 
-same argparse as YOLOv7
+same argparse as YOLOv7   
 --source "set/set1/"+(your file name)
 
 </div>
